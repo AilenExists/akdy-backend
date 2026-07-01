@@ -2,9 +2,10 @@
 exposed = "1.2.0"
 h2 = "2.4.240"
 koin = "4.2.0"
-kotlin = "2.3.21"
+kotlin = "2.4.0"
+ksp = "2.3.9"
 logback = "1.5.21"
-    
+
 [libraries]
 exposed-core = { module = "org.jetbrains.exposed:exposed-core", version.ref = "exposed" }
 exposed-r2dbc = { module = "org.jetbrains.exposed:exposed-r2dbc", version.ref = "exposed" }
@@ -23,7 +24,10 @@ ucasoft-ktorSimpleCache = { module = "com.ucasoft.ktor:ktor-simple-cache", versi
 ucasoft-ktorSimpleRedisCache = { module = "com.ucasoft.ktor:ktor-simple-redis-cache", version = "0.59.4" }
 jbcrypt = { module = "org.mindrot:jbcrypt", version = "0.4" }
 
+ksp-api = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
+
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
