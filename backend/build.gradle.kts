@@ -47,8 +47,8 @@ dependencies {
     implementation(libs.postgresql)
     implementation(libs.ucasoft.ktorSimpleCache)
     implementation(libs.ucasoft.ktorSimpleRedisCache)
+    implementation(libs.lettuce)
     implementation(libs.jbcrypt)
-    implementation(libs.rethis)
 
     testImplementation(kotlin("test"))
     testImplementation(ktorLibs.server.testHost)

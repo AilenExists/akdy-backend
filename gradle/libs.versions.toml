@@ -23,7 +23,7 @@ postgresql = { module = "org.postgresql:postgresql", version = "42.7.10" }
 ucasoft-ktorSimpleCache = { module = "com.ucasoft.ktor:ktor-simple-cache", version = "0.59.4" }
 ucasoft-ktorSimpleRedisCache = { module = "com.ucasoft.ktor:ktor-simple-redis-cache", version = "0.59.4" }
 jbcrypt = { module = "org.mindrot:jbcrypt", version = "0.4" }
-
+lettuce = { module = "io.lettuce:lettuce-core", version = "7.0.0.RELEASE" }
 ksp-api = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
 
 [plugins]
