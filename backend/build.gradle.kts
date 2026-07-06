@@ -41,6 +41,7 @@ dependencies {
     implementation(libs.hikaricp)
     implementation(libs.h2database.h2)
     implementation(libs.h2database.r2dbc)
+    implementation(libs.okhttp.ktor)
     implementation(libs.koin.ktor)
     implementation(libs.koin.loggerSlf4j)
     implementation(libs.logback.classic)
