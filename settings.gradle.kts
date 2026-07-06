@@ -1,9 +1,5 @@
 rootProject.name = "AKDYMall_backend"
 
-include(":backend")
-include(":annotations")
-include(":processor")
-
 pluginManagement {
     repositories {
         mavenCentral()
