@@ -1,6 +1,6 @@
 rootProject.name = "AKDYMall_backend"
 
-include(":backend")
+include(":server")
 include(":annotations")
 include(":processor")
 
