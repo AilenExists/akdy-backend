@@ -9,8 +9,12 @@ object CredentialTable : LongIdTable("user_credentials") {
     val name = varchar("name", 255)
     val userId = reference("user_id", UserTable)
     val provider = enumeration<CredentialProvider>("provider")
-    val providerUserId = varchar("provider_user_id", 255)
+    val providerUserId = varchar("provider_user_id", 255).uniqueIndex()
     val passwordHash = varchar("password_hash", 255)
     val createdAt = datetime("created_at").defaultExpression(CurrentDateTime)
     val updatedAt = datetime("updated_at").defaultExpression(CurrentDateTime)
+
+    init {
+        uniqueIndex(provider,providerUserId)
+    }
 }

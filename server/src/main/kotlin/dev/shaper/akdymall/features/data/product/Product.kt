@@ -4,9 +4,13 @@ import dev.shaper.akdymall.annotations.ExposedMapping
 import dev.shaper.akdymall.annotations.Id
 import dev.shaper.akdymall.annotations.ReadOnly
 import dev.shaper.akdymall.annotations.Reference
+import dev.shaper.akdymall.features.common.database.BaseDTO
+import dev.shaper.akdymall.utils.UUIDSerializer
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Serializer
 import kotlinx.serialization.json.JsonElement
+import java.util.UUID
 
 @Serializable
 @ExposedMapping(ProductTable::class)
@@ -16,14 +20,21 @@ data class Product (
     val tags: JsonElement,
     val name: String,
     val description: String,
+    val badges: List<String>,
+    val certQuote: ProductCert,
+    val sellerName: String,
+    @Serializable(UUIDSerializer::class)
+    @Reference val sellerId: UUID,
     val regularPrice: Double,
     val salePrice: Double,
+    val images: List<String>,
     val buyMin: Int,
     val buyMax: Int,
-    val images: List<String>,
-    val manufacture: String,
+    val ratingSum: Double,
+    val ratingCount: Int,
+    val location: String,
     val tier: ProductGrade,
     val isDeleted: Boolean,
-    @ReadOnly val createdAt: LocalDateTime,
-    @ReadOnly val updatedAt: LocalDateTime,
-    )
+    @ReadOnly override val createdAt: LocalDateTime,
+    @ReadOnly override val updatedAt: LocalDateTime,
+    ) : BaseDTO

@@ -1,9 +1,6 @@
 package dev.shaper.akdymall.features.data.user
 
 import dev.shaper.akdymall.features.data.product.ProductTable.isDeleted
-import dev.shaper.akdymall.features.data.user.credential.Credential
-import dev.shaper.akdymall.features.data.user.credential.CredentialTable
-import dev.shaper.akdymall.features.data.user.credential.toCredential
 import dev.shaper.akdymall.utils.ValueUtils.nowTime
 import org.jetbrains.exposed.v1.core.eq
 import org.jetbrains.exposed.v1.jdbc.insertAndGetId
@@ -14,8 +11,17 @@ import java.util.*
 
 class UserService {
 
-    fun createUser(user: User): User = transaction {
-        val id = UserTable.insertAndGetId { it.fromUser(user) }
+    fun createUser(user: FlatUser): User = transaction {
+        val id = UserTable.insertAndGetId {
+            it[id]          = user.id
+            it[username]    = user.username
+            it[email]       = user.email
+            it[phoneNumber] = user.phoneNumber
+            it[status]      = UserStatus.PENDING
+            it[role]        = user.role
+            it[points]      = 100
+            it[likes]       = listOf()
+        }
         UserTable.selectAll()
             .where { UserTable.id eq id }
             .single()
@@ -34,21 +40,6 @@ class UserService {
             .where { UserTable.email eq email }
             .singleOrNull()
             ?.toUser()
-    }
-
-    fun findUserCredentialByEmail(email: String) : Credential? = transaction {
-        (CredentialTable innerJoin UserTable)
-            .selectAll()
-            .where { UserTable.email eq email }
-            .map { it.toCredential() }
-            .firstOrNull()
-    }
-
-    fun findUserCredential(userId: UUID) : Credential? = transaction {
-        CredentialTable.selectAll()
-            .where { CredentialTable.userId eq userId }
-            .singleOrNull()
-            ?.toCredential()
     }
 
     fun updateUser(user : User): Boolean = transaction {
