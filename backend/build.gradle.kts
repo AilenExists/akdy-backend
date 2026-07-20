@@ -43,6 +43,8 @@ dependencies {
     implementation(libs.h2database.r2dbc)
     implementation(libs.okhttp.ktor)
     implementation(libs.koin.ktor)
+    implementation(libs.elastic.search)
+    implementation(libs.elastic.search.client)
     implementation(libs.koin.loggerSlf4j)
     implementation(libs.logback.classic)
     implementation(libs.postgresql)
@@ -53,4 +55,17 @@ dependencies {
 
     testImplementation(kotlin("test"))
     testImplementation(ktorLibs.server.testHost)
+}
+
+val dotenv: Map<String, String> = rootProject.file("../.secrets/.env.test").takeIf { it.exists() }
+    ?.readLines()
+    ?.map { it.trim() }
+    ?.filter { it.isNotEmpty() && !it.startsWith("#") && it.contains("=") }
+    ?.associate {
+        val (k, v) = it.split("=", limit = 2)
+        k.trim() to v.trim().removeSurrounding("\"").removeSurrounding("'")
+    } ?: emptyMap()
+
+tasks.withType<Test>().configureEach {
+    dotenv.forEach { (k, v) -> environment(k, v) }
 }
