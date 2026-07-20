@@ -1,7 +1,7 @@
-package dev.shaper.akdymall.features.data.product.specs
+package dev.shaper.akdymall.features.data.product.spec
 
 import dev.shaper.akdymall.features.data.product.ProductTable
-import dev.shaper.akdymall.features.structure.database.BaseTable
+import dev.shaper.akdymall.features.common.database.BaseTable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 import org.jetbrains.exposed.v1.core.ReferenceOption

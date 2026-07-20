@@ -1,10 +1,10 @@
-package dev.shaper.akdymall.features.data.product.specs
+package dev.shaper.akdymall.features.data.product.spec
 
 import dev.shaper.akdymall.annotations.ExposedMapping
 import dev.shaper.akdymall.annotations.Id
 import dev.shaper.akdymall.annotations.ReadOnly
 import dev.shaper.akdymall.annotations.Reference
-import dev.shaper.akdymall.features.structure.database.BaseDTO
+import dev.shaper.akdymall.features.common.database.BaseDTO
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.json.JsonElement
 
