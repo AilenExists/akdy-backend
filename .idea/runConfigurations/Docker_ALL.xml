@@ -1,13 +1,11 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Docker ALL" type="docker-deploy" factoryName="docker-compose.yml" server-name="ServerDocker">
+  <configuration default="false" name="Docker ALL" type="docker-deploy" factoryName="docker-compose.yml" server-name="Docker">
     <deployment type="docker-compose.yml">
       <settings>
-        <option name="sourceFilePath" value="../../docker-compose.yml" />
+        <option name="sourceFilePath" value="../docker-compose.yml" />
         <option name="upDetach" value="false" />
       </settings>
     </deployment>
-    <method v="2">
-      <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_외부 도구_deploy" />
-    </method>
+    <method v="2" />
   </configuration>
 </component>
