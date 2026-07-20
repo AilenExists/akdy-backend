@@ -1,4 +1,4 @@
-package dev.shaper.akdymall.features.structure.database
+package dev.shaper.akdymall.features.common.database
 
 import kotlinx.datetime.LocalDateTime
 

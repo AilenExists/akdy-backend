@@ -1,4 +1,4 @@
-package dev.shaper.akdymall.features.structure.database
+package dev.shaper.akdymall.features.common.database
 
 import dev.shaper.akdymall.features.data.product.ProductTable.clientDefault
 import kotlinx.datetime.LocalDateTime
@@ -10,7 +10,7 @@ import kotlin.time.Clock
 import kotlin.time.Duration.Companion.days
 
 interface BaseExpireTable: BaseTable {
-    val expireAt: Column<LocalDateTime>
+    val expiresAt: Column<LocalDateTime>
         get() = registerColumn("expires_at", KotlinLocalDateTimeColumnType()).clientDefault {
             Clock.System.now()
                 .plus(365.days)
