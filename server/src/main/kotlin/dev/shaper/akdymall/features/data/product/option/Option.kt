@@ -1,0 +1,20 @@
+package dev.shaper.akdymall.features.data.product.option
+
+import dev.shaper.akdymall.annotations.ExposedMapping
+import dev.shaper.akdymall.annotations.Id
+import dev.shaper.akdymall.annotations.ReadOnly
+import dev.shaper.akdymall.annotations.Reference
+import dev.shaper.akdymall.features.common.database.BaseDTO
+import kotlinx.datetime.LocalDateTime
+
+@ExposedMapping(OptionTable::class)
+data class Option(
+    @Id val optionId: Long,
+    @Reference val productId: Long,
+    val baseProduct: Boolean,
+    val optionName: String,
+    val count : Long,
+    val priceFluctuation : Long,
+    @ReadOnly override val createdAt: LocalDateTime,
+    @ReadOnly override val updatedAt: LocalDateTime,
+): BaseDTO

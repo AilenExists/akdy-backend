@@ -61,3 +61,4 @@ ktor-server/ktor-server-plugins/ktor-server-openapi/docs
 *.actual.json
 
 *.db
+*.log
