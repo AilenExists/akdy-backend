@@ -4,12 +4,13 @@ import dev.shaper.akdymall.annotations.ExposedMapping
 import dev.shaper.akdymall.annotations.Id
 import dev.shaper.akdymall.annotations.ReadOnly
 import dev.shaper.akdymall.annotations.Reference
-import dev.shaper.akdymall.features.common.database.BaseDTO
+import dev.shaper.akdymall.features.common.database.TimestampDTO
+import dev.shaper.akdymall.utils.BigDecimalSerializer
 import dev.shaper.akdymall.utils.UUIDSerializer
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Serializer
 import kotlinx.serialization.json.JsonElement
+import java.math.BigDecimal
 import java.util.UUID
 
 @Serializable
@@ -25,16 +26,21 @@ data class Product (
     val sellerName: String,
     @Serializable(UUIDSerializer::class)
     @Reference val sellerId: UUID,
-    val regularPrice: Double,
-    val salePrice: Double,
+    val price: Long,
+    val salePrice: Long,
+    val discountRate: Int,
     val images: List<String>,
     val buyMin: Int,
     val buyMax: Int,
+    @Serializable(BigDecimalSerializer::class)
+    @ReadOnly val rating: BigDecimal,
     val ratingSum: Double,
     val ratingCount: Int,
+    val quantitySum: Long,
+    val viewCount: Long,
     val location: String,
     val tier: ProductGrade,
     val isDeleted: Boolean,
     @ReadOnly override val createdAt: LocalDateTime,
     @ReadOnly override val updatedAt: LocalDateTime,
-    ) : BaseDTO
+    ) : TimestampDTO

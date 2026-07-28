@@ -4,7 +4,7 @@ import dev.shaper.akdymall.annotations.ExposedMapping
 import dev.shaper.akdymall.annotations.Id
 import dev.shaper.akdymall.annotations.ReadOnly
 import dev.shaper.akdymall.annotations.Reference
-import dev.shaper.akdymall.features.common.database.BaseDTO
+import dev.shaper.akdymall.features.common.database.TimestampDTO
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.json.JsonElement
 
@@ -16,4 +16,4 @@ data class Spec(
     val validationData: JsonElement,
     @ReadOnly override val createdAt: LocalDateTime,
     @ReadOnly override val updatedAt: LocalDateTime
-): BaseDTO
+): TimestampDTO
