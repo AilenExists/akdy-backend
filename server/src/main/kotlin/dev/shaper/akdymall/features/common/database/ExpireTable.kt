@@ -10,7 +10,7 @@ import org.jetbrains.exposed.v1.datetime.KotlinLocalDateTimeColumnType
 import kotlin.time.Clock
 import kotlin.time.Duration.Companion.days
 
-interface BaseExpireTable: BaseTable {
+interface ExpireTable: TimestampTable {
     val expiresAt: Column<LocalDateTime>
         get() = cached("expires_at") {
             registerColumn("expires_at", KotlinLocalDateTimeColumnType()).clientDefault {

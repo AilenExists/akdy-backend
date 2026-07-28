@@ -5,7 +5,7 @@ import org.jetbrains.exposed.v1.core.dao.id.LongIdTable
 import org.jetbrains.exposed.v1.datetime.CurrentDateTime
 import org.jetbrains.exposed.v1.datetime.datetime
 
-object CredentialTable : LongIdTable("user_credentials") {
+object CredentialTable : LongIdTable("user_credential") {
     val name = varchar("name", 255)
     val userId = reference("user_id", UserTable)
     val provider = enumeration<CredentialProvider>("provider")

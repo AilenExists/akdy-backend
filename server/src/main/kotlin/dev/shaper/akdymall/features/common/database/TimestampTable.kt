@@ -7,9 +7,8 @@ import org.jetbrains.exposed.v1.core.Column
 import org.jetbrains.exposed.v1.core.IColumnType
 import org.jetbrains.exposed.v1.datetime.CurrentDateTime
 import org.jetbrains.exposed.v1.datetime.KotlinLocalDateTimeColumnType
-import java.util.concurrent.ConcurrentHashMap
 
-interface BaseTable {
+interface TimestampTable {
     fun <T> registerColumn(name:String, type: IColumnType<T & Any>) : Column<T>
 
     val createdAt: Column<LocalDateTime>

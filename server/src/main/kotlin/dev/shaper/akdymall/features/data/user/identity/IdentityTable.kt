@@ -1,10 +1,10 @@
 package dev.shaper.akdymall.features.data.user.identity
 
 import dev.shaper.akdymall.features.data.user.UserTable
-import dev.shaper.akdymall.features.common.database.BaseExpireTable
+import dev.shaper.akdymall.features.common.database.ExpireTable
 import org.jetbrains.exposed.v1.core.dao.id.LongIdTable
 
-object IdentityTable : LongIdTable("user_identity"), BaseExpireTable {
+object IdentityTable : LongIdTable("user_identity"), ExpireTable {
     val userId = reference("user_id", UserTable.id)
     val name = varchar("name", 255)
     val age = short("age")

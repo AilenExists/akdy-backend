@@ -3,7 +3,7 @@ package dev.shaper.akdymall.features.data.user
 import dev.shaper.akdymall.annotations.ExposedMapping
 import dev.shaper.akdymall.annotations.Id
 import dev.shaper.akdymall.annotations.ReadOnly
-import dev.shaper.akdymall.features.common.database.BaseExpireDTO
+import dev.shaper.akdymall.features.common.database.ExpireDTO
 import dev.shaper.akdymall.utils.UUIDSerializer
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.Serializable
@@ -27,5 +27,5 @@ data class User (
     @ReadOnly override val createdAt: LocalDateTime,
     @ReadOnly override val updatedAt: LocalDateTime,
     @ReadOnly override val expiresAt: LocalDateTime,
-): BaseExpireDTO, BaseUser {
+): ExpireDTO, BaseUser {
 }
