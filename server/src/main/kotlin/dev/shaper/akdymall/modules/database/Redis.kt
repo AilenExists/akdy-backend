@@ -8,6 +8,8 @@ import io.lettuce.core.RedisURI
 import io.lettuce.core.api.StatefulRedisConnection
 import io.lettuce.core.api.coroutines
 import io.lettuce.core.api.coroutines.RedisCoroutinesCommands
+import org.koin.core.context.loadKoinModules
+import org.koin.dsl.module
 import org.koin.ktor.ext.getKoin
 
 
@@ -16,7 +18,7 @@ fun Application.configureRedis() {
 
     val builder = RedisURI.Builder
         .redis(
-             propertyGetter("redis.url"),
+             propertyGetter("redis.host"),
             propertyGetter("redis.port").toInt()
         )
         .withDatabase(1)
@@ -25,6 +27,9 @@ fun Application.configureRedis() {
     val redis: RedisClient = RedisClient.create(builder)
     val connection: StatefulRedisConnection<String, String> = redis.connect()
     val commands = connection.coroutines()
-    getKoin().declare<RedisCoroutinesCommands<String, String>>(commands)
+
+    loadKoinModules(module {
+        single<RedisCoroutinesCommands<String, String>> { commands }
+    })
 
 }

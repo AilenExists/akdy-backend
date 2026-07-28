@@ -1,7 +1,9 @@
 package dev.shaper.akdymall.services.di
 
+import dev.shaper.akdymall.features.data.manage.sync.SyncService
 import dev.shaper.akdymall.features.data.product.ProductService
 import dev.shaper.akdymall.features.data.product.category.CategoryService
+import dev.shaper.akdymall.features.data.review.ReviewService
 import dev.shaper.akdymall.features.data.user.UserService
 import dev.shaper.akdymall.features.data.user.credential.CredentialService
 import dev.shaper.akdymall.services.redis.RedisWrapper
@@ -23,10 +25,12 @@ object AppModule {
         // UI/UX
         //single { BannerService() }
         // Data
+        single { SyncService() }
         single { UserService() }
         single { CredentialService() }
         single { ProductService() }
         single { CategoryService() }
+        single { ReviewService() }
 
     }
 
