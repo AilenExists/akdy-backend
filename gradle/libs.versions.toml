@@ -24,6 +24,7 @@ logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "lo
 elastic-search = { module = "org.elasticsearch:elasticsearch", version.ref = "elastic" }
 elastic-search-client = { module = "co.elastic.clients:elasticsearch-java", version.ref = "elastic" }
 postgresql = { module = "org.postgresql:postgresql", version = "42.7.10" }
+db-scheduler = { module = "com.github.kagkarlsson:db-scheduler", version = "16.12.0" }
 ucasoft-ktorSimpleCache = { module = "com.ucasoft.ktor:ktor-simple-cache", version = "0.59.4" }
 ucasoft-ktorSimpleRedisCache = { module = "com.ucasoft.ktor:ktor-simple-redis-cache", version = "0.59.4" }
 jbcrypt = { module = "org.mindrot:jbcrypt", version = "0.4" }
