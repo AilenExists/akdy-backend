@@ -1,9 +1,9 @@
 package dev.shaper.akdymall.features.data.user
 
-import dev.shaper.akdymall.features.common.database.BaseExpireTable
+import dev.shaper.akdymall.features.common.database.ExpireTable
 import org.jetbrains.exposed.v1.core.dao.id.java.UUIDTable
 
-object UserTable : UUIDTable("users"), BaseExpireTable {
+object UserTable : UUIDTable("user"), ExpireTable {
     val username = varchar("username", 255).uniqueIndex()
     val token = varchar("token", 255).nullable()
     val email = varchar("email", 255).uniqueIndex()

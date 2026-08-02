@@ -4,7 +4,7 @@ import dev.shaper.akdymall.annotations.ExposedMapping
 import dev.shaper.akdymall.annotations.Id
 import dev.shaper.akdymall.annotations.ReadOnly
 import dev.shaper.akdymall.annotations.Reference
-import dev.shaper.akdymall.features.common.database.BaseExpireDTO
+import dev.shaper.akdymall.features.common.database.ExpireDTO
 import kotlinx.datetime.LocalDateTime
 import java.util.*
 
@@ -21,4 +21,4 @@ data class Identity (
     @ReadOnly override val createdAt: LocalDateTime,
     @ReadOnly override val updatedAt: LocalDateTime,
     @ReadOnly override val expiresAt: LocalDateTime,
-) : BaseExpireDTO, BaseIdentity
+) : ExpireDTO, BaseIdentity

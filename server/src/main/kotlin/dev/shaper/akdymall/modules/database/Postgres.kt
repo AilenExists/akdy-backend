@@ -3,6 +3,7 @@ package dev.shaper.akdymall.modules.database
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import dev.shaper.akdymall.generated.ExposedTables
+import dev.shaper.akdymall.services.di.AppModule.databaseModule
 import io.ktor.server.application.*
 import org.jetbrains.exposed.v1.core.SqlLogger
 import org.jetbrains.exposed.v1.core.Transaction
@@ -10,6 +11,9 @@ import org.jetbrains.exposed.v1.core.statements.StatementContext
 import org.jetbrains.exposed.v1.core.statements.expandArgs
 import org.jetbrains.exposed.v1.jdbc.Database
 import org.jetbrains.exposed.v1.jdbc.transactions.transaction
+import org.koin.core.context.loadKoinModules
+import org.koin.dsl.module
+import javax.sql.DataSource
 
 
 fun Application.configurePostgres() {
@@ -20,10 +24,12 @@ fun Application.configurePostgres() {
         driverClassName = "org.postgresql.Driver"
         maximumPoolSize = 10
     }
+    var dataSource: DataSource? = null
+    var database: Database? = null
 
     try {
-        val dataSource = HikariDataSource(hikariConfig)
-        Database.connect(dataSource)
+        dataSource = HikariDataSource(hikariConfig)
+        database = Database.connect(dataSource)
         environment.log.info("Database connected successfully!")
     } catch (e: Exception) {
         environment.log.error("Database connection failed: ${e.message}")
@@ -33,4 +39,9 @@ fun Application.configurePostgres() {
         //추후 Flyway 기술 추가
         ExposedTables.createAll()
     }
+
+    loadKoinModules(module {
+        single<DataSource> { dataSource!! }
+        single<Database> { database!! }
+    })
 }

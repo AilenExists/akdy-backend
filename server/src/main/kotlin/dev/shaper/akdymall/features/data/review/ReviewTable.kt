@@ -2,13 +2,13 @@ package dev.shaper.akdymall.features.data.review
 
 import dev.shaper.akdymall.features.data.product.ProductTable
 import dev.shaper.akdymall.features.data.user.UserTable
-import dev.shaper.akdymall.features.common.database.BaseTable
+import dev.shaper.akdymall.features.common.database.TimestampTable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 import org.jetbrains.exposed.v1.core.dao.id.LongIdTable
 import org.jetbrains.exposed.v1.json.json
 
-object ReviewTable: LongIdTable("review"), BaseTable {
+object ReviewTable: LongIdTable("review"), TimestampTable {
     val productId = reference("product_id", ProductTable)
     val userId = reference("user_id", UserTable)
     val rating = short("rating")

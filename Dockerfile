@@ -4,7 +4,7 @@ WORKDIR /app
 
 # 소스 복사 후 빌드
 COPY . .
-RUN gradle buildFatJar --no-daemon
+RUN gradle buildFatJar --no-daemon -x test
 
 # 실행 스테이지
 FROM gcr.io/distroless/java21-debian12

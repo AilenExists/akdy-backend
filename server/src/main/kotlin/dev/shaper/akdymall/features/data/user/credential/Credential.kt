@@ -4,7 +4,7 @@ import dev.shaper.akdymall.annotations.ExposedMapping
 import dev.shaper.akdymall.annotations.Id
 import dev.shaper.akdymall.annotations.ReadOnly
 import dev.shaper.akdymall.annotations.Reference
-import dev.shaper.akdymall.features.common.database.BaseDTO
+import dev.shaper.akdymall.features.common.database.TimestampDTO
 import kotlinx.datetime.LocalDateTime
 import java.util.UUID
 
@@ -20,4 +20,4 @@ data class Credential (
     val passwordHash: String,
     @ReadOnly override val updatedAt: LocalDateTime,
     @ReadOnly override val createdAt: LocalDateTime,
-): BaseDTO
+): TimestampDTO

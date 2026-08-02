@@ -1,7 +1,7 @@
 package dev.shaper.akdymall.features.data.user
 
 import dev.shaper.akdymall.features.data.product.ProductTable.isDeleted
-import dev.shaper.akdymall.utils.ValueUtils.nowTime
+import dev.shaper.akdymall.utils.ValueUtils.getCurrent
 import org.jetbrains.exposed.v1.core.eq
 import org.jetbrains.exposed.v1.jdbc.insertAndGetId
 import org.jetbrains.exposed.v1.jdbc.selectAll
@@ -45,7 +45,7 @@ class UserService {
     fun updateUser(user : User): Boolean = transaction {
         val updated = UserTable.update({ UserTable.id eq user.userId }) {
             it.fromUser(user)
-            it[updatedAt] = nowTime()
+            it[updatedAt] = getCurrent()
         }
         updated > 0
     }
@@ -55,7 +55,7 @@ class UserService {
         // We have to delete user by status,updatedAt
         val updated = UserTable.update({ UserTable.id eq userId }) {
             it[isDeleted] = true
-            it[updatedAt] = nowTime()
+            it[updatedAt] = getCurrent()
         }
         updated > 0
     }
