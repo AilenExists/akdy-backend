@@ -2,7 +2,9 @@ package dev.shaper.akdymall.modules.database
 
 import dev.shaper.akdymall.utils.ValueUtils.propertyGetter
 import io.ktor.server.application.*
+import io.lettuce.core.ClientOptions
 import io.lettuce.core.ExperimentalLettuceCoroutinesApi
+import io.lettuce.core.MaintNotificationsConfig
 import io.lettuce.core.RedisClient
 import io.lettuce.core.RedisURI
 import io.lettuce.core.api.StatefulRedisConnection
@@ -24,7 +26,11 @@ fun Application.configureRedis() {
         .withDatabase(1)
         .build()
     // 추후 비밀번호 추가
-    val redis: RedisClient = RedisClient.create(builder)
+    val redis: RedisClient = RedisClient.create(builder).apply {
+        options = ClientOptions.builder()
+            .maintNotificationsConfig(MaintNotificationsConfig.disabled())
+            .build()
+    }
     val connection: StatefulRedisConnection<String, String> = redis.connect()
     val commands = connection.coroutines()
 

@@ -19,4 +19,10 @@ object ValueUtils {
     }
     fun Application.propertyGetter(path:String): String
             = environment.config.property(path).getString()
+
+    fun Application.getUrl(): String
+        = """http${if(propertyGetter("ktor.deployment.name") == "localhost") "" else "s"}://
+            |${propertyGetter("ktor.deployment.name")}
+            |${propertyGetter("ktor.deployment.endpoint")}
+        """.trimMargin().replace("\n", "")
 }

@@ -22,6 +22,7 @@ dependencies {
     ksp(project(":processor"))
     implementation(ktorLibs.client.apache)
     implementation(ktorLibs.client.core)
+    implementation(ktorLibs.client.contentNegotiation)
     implementation(ktorLibs.serialization.kotlinx.json)
     implementation(ktorLibs.server.auth)
     implementation(ktorLibs.server.auth.jwt)

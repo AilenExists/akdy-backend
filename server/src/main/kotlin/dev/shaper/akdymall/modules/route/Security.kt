@@ -1,6 +1,7 @@
 package dev.shaper.akdymall.modules.route
 
 import dev.shaper.akdymall.features.auth.AuthService
+import dev.shaper.akdymall.utils.ValueUtils.getUrl
 import dev.shaper.akdymall.utils.ValueUtils.propertyGetter
 import io.ktor.client.*
 import io.ktor.http.*
@@ -35,7 +36,7 @@ fun Application.configureSecurity() {
 
     authentication {
         val application = this@configureSecurity
-        val urlPath = application.propertyGetter("ktor.deployment.host") + application.propertyGetter("ktor.deployment.endpoint")
+        val urlPath = application.getUrl()
         oauth("auth-oauth-google") {
             urlProvider = { "${urlPath}/auth/oauth/google/callback" }
             providerLookup = {
@@ -46,7 +47,7 @@ fun Application.configureSecurity() {
                     requestMethod   = HttpMethod.Post,
                     clientId        = application.propertyGetter("oauth.google.id"),
                     clientSecret    = application.propertyGetter("oauth.google.secret"),
-                    defaultScopes   = listOf("https://www.googleapis.com/auth/userinfo.profile"),
+                    defaultScopes   = listOf("openid", "email", "profile"),
                     onStateCreated  = { call, state ->
                         // 로그인 하는 쪽에서 쿼리 요청시 ex) /auth/oauth/google/login?=redierct
                         val redirectTo = call.request.queryParameters["redirect"] ?: "/"
