@@ -1,14 +1,14 @@
+# syntax=docker/dockerfile:1
 # 빌드 스테이지
 FROM gradle:8-jdk21 AS builder
 WORKDIR /app
-
-# 소스 복사 후 빌드
 COPY . .
-RUN gradle buildFatJar --no-daemon -x test
+RUN --mount=type=cache,target=/home/gradle/.gradle,uid=1000,gid=1000 \
+    gradle :server:installDist --no-daemon -x test
 
 # 실행 스테이지
 FROM gcr.io/distroless/java21-debian12
 WORKDIR /app
-COPY --from=builder /app/server/build/libs/*-all.jar app.jar
+COPY --from=builder /app/server/build/install/server/lib /app/lib
 EXPOSE 8080
-CMD ["app.jar"]
+ENTRYPOINT ["java", "-cp", "/app/lib/*", "dev.shaper.akdymall.MainKt"]
