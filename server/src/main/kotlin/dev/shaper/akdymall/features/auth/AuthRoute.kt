@@ -12,6 +12,7 @@ import dev.shaper.akdymall.features.data.user.UserResponse
 import dev.shaper.akdymall.features.data.user.credential.CredentialService
 import dev.shaper.akdymall.services.clients.GoogleWrapper.fetchGoogleProfile
 import io.ktor.http.*
+import io.ktor.server.application.log
 import io.ktor.server.auth.OAuthAccessTokenResponse
 import io.ktor.server.auth.authenticate
 import io.ktor.server.auth.authentication
@@ -151,6 +152,7 @@ fun Route.authRouting() {
                         val accessToken = currentPrincipal?.accessToken ?: return@get call.respond(HttpStatusCode.Unauthorized)
                         //login process
                         val profile = fetchGoogleProfile(accessToken)
+                        application.log.debug("Google user profile : {}", profile)
                         val credential = credentialService.findUserCredentialByUserId(CredentialProvider.GOOGLE,profile.sub)
                             ?: return@get call.respond(HttpStatusCode.BadRequest,
                                 DefaultErrorResponse(

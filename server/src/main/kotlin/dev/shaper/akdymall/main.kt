@@ -1,6 +1,7 @@
 package dev.shaper.akdymall
 
 import dev.shaper.akdymall.modules.core.configureKoin
+import dev.shaper.akdymall.modules.core.configureServerSettings
 import dev.shaper.akdymall.modules.database.configurePostgres
 import dev.shaper.akdymall.modules.database.configureRedis
 import dev.shaper.akdymall.modules.route.configureRouting
@@ -20,4 +21,5 @@ fun Application.module() {
     configureRouting()
     configureSecurity()
     configureStatusPages()
+    configureServerSettings()
 }

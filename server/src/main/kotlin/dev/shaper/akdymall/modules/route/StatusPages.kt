@@ -11,6 +11,7 @@ import io.ktor.server.response.*
 fun Application.configureStatusPages() {
     install(StatusPages) {
         exception<BadRequestException> { call, cause ->
+            call.application.log.error("Bad request exception", cause)
             call.respond(HttpStatusCode.BadRequest,
                 DefaultErrorResponse(cause.message ?: "Unknown error", ErrorCode.INVALID_REQUEST)
             )
